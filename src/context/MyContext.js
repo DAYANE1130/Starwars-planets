@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function MyContext() {
-  return (
-    <div />
-  );
+export class MyContext extends Component {
+  render() {
+    return (
+      <div />
+    );
+  }
 }
 
 export default MyContext;
