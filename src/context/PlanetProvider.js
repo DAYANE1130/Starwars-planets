@@ -5,10 +5,9 @@ import fetchPlanetsApi from '../services/Api';
 
 function PlanetProvider({ children }) {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function getPlanets() {
-    setIsLoading(true);
     const planets = await fetchPlanetsApi();
     setData(planets);
     setIsLoading(false);
