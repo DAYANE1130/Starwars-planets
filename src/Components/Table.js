@@ -13,9 +13,6 @@ function Table() {
     }
     return data;
   }
-  // useEffect(() => {
-  //   planetFilter();
-  // }, [name]);
 
   if (isLoading === true) return <p>CARREGANDO...</p>;
   return (
