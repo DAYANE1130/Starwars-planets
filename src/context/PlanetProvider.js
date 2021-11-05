@@ -6,6 +6,14 @@ import fetchPlanetsApi from '../services/Api';
 function PlanetProvider({ children }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [filters, setFilters] = useState(
+    {
+      filterByName: {
+        name: '',
+      },
+
+    },
+  );
 
   async function getPlanets() {
     const planets = await fetchPlanetsApi();
@@ -16,6 +24,10 @@ function PlanetProvider({ children }) {
     getPlanets();
   }, []);
 
+  const handleFilterName = ({ target: { value } }) => {
+    setFilters({ ...filters, filterByName: { name: value } });
+  };
+
   return (
     <PlanetContext.Provider
       value={ { data,
@@ -23,6 +35,8 @@ function PlanetProvider({ children }) {
         isLoading,
         setIsLoading,
         getPlanets,
+        handleFilterName,
+        filters,
       } }
     >
       {children}

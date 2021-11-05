@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PlanetContext from '../context/PlanetContext';
 
 function Table() {
-  const { data, isLoading } = useContext(PlanetContext);
+  const { data, setData, isLoading, filters } = useContext(PlanetContext);
+  const { filterByName: { name } } = filters;
+
+  useEffect(() => {
+    const nameFilter = data.filter((planet) => planet.name.includes(name));
+    setData(nameFilter);
+    console.log(nameFilter);
+  }, [name]);
 
   if (isLoading === true) return <p>CARREGANDO...</p>;
+  // if (name.length !==0 ) return
   return (
     <section>
       <table>
