@@ -37,7 +37,6 @@ function PlanetProvider({ children }) {
       const respostaApi = await fetchPlanetsApi();
       setDataFiltered(respostaApi);
     }
-  //   setIsLoading(false);
   }
 
   useEffect(() => {
@@ -50,22 +49,33 @@ function PlanetProvider({ children }) {
     planetFilter(value);
   };
 
-  // function planetFilter() {
-  //   const { filterByName: { name } } = filters;
-  //   if (name.length > 0) {
-  //     const nameFilter = data
-  //       .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
-  //     return nameFilter;
-  //   }
-  //   return data;
-  // }
-
   const handleFilterNumeric = (event) => {
     const { name, value } = event.target;
     setFilters(
       { filterByNumericValues: [{ ...filters.filterByNumericValues[0], [name]: value }] },
     );
   };
+
+  function numericFilter() {
+    const { filterByNumericValues } = filters;
+    const { column, comparison, value } = filterByNumericValues[0];
+    if (comparison === 'maior que') {
+      const numericFiltered = data.filter(
+        (planet) => Number(planet[column]) > Number(value),
+      );
+      setDataFiltered(numericFiltered);
+    } else if (comparison === 'menor que') {
+      const numericFiltered = data.filter(
+        (planet) => Number(planet[column]) < Number(value),
+      );
+      setDataFiltered(numericFiltered);
+    } else if (comparison === 'igual a') {
+      const numericFiltered = data.filter(
+        (planet) => Number(planet[column]) === Number(value),
+      );
+      setDataFiltered(numericFiltered);
+    }
+  }
 
   return (
     <PlanetContext.Provider
@@ -79,6 +89,7 @@ function PlanetProvider({ children }) {
         handleFilterNumeric,
         dataFiltered,
         setDataFiltered,
+        numericFilter,
       } }
     >
       {children}

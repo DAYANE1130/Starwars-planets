@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PlanetContext from '../context/PlanetContext';
 
 function FilterByNumber() {
-  const { handleFilterNumeric } = useContext(PlanetContext);
+  const { handleFilterNumeric, numericFilter } = useContext(PlanetContext);
   return (
     <div>
       <label htmlFor="column-filter">
@@ -42,7 +42,7 @@ function FilterByNumber() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ () => console.log('cliquei') }
+        onClick={ () => numericFilter() }
       >
         Filtrar
       </button>

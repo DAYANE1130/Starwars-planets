@@ -47,10 +47,10 @@ function Table() {
                 {planet.orbital_period}
               </td>
               <td>
-                {planet.climate}
+                {planet.diameter}
               </td>
               <td>
-                {planet.diameter}
+                {planet.climate}
               </td>
               <td>
                 {planet.gravity}
