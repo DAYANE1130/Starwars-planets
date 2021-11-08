@@ -3,6 +3,7 @@ import PlanetContext from '../context/PlanetContext';
 
 function FilterByNumber() {
   const { handleFilterNumeric, numericFilter } = useContext(PlanetContext);
+
   return (
     <div>
       <label htmlFor="column-filter">

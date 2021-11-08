@@ -77,6 +77,15 @@ function PlanetProvider({ children }) {
     }
   }
 
+  function removeFilterColumn(column) {
+    setFilters({ ...filters,
+      filterByNumericValues: filters.filterByNumericValues.filter(
+        (item) => item.column !== column,
+      ) });
+    console.log(filters.filterByNumericValues);
+    console.log(column);
+  }
+
   return (
     <PlanetContext.Provider
       value={ { data,
@@ -90,6 +99,7 @@ function PlanetProvider({ children }) {
         dataFiltered,
         setDataFiltered,
         numericFilter,
+        removeFilterColumn,
       } }
     >
       {children}
