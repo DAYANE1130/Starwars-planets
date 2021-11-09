@@ -7,6 +7,7 @@ function RemoveFilter() {
   return (
     <div>
       <section>
+
         {filterByNumericValues.map(
           ({ column, comparison, value }) => (
             <div key={ column }>

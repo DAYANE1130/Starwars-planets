@@ -3,23 +3,6 @@ import PlanetContext from '../context/PlanetContext';
 
 function Table() {
   const { data, isLoading, dataFiltered } = useContext(PlanetContext);
-  // const { filterByName: { name } } = filters;
-
-  // async function planetFilter() {
-  //   if (name.length > 0) {
-  //     const nameFiltered = data
-  //       .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
-  //     setDataFiltered(nameFiltered);
-  //   } else {
-  //     const respostaApi = await fetchPlanetsApi();
-  //     setDataFiltered(respostaApi);
-  //   }
-  // //   setIsLoading(false);
-  // }
-
-  // useEffect(() => {
-  //   planetFilter();
-  // }, []);
 
   if (isLoading === true) return <p>CARREGANDO...</p>;
   return (

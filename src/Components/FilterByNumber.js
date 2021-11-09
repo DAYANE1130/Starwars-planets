@@ -2,8 +2,12 @@ import React, { useContext } from 'react';
 import PlanetContext from '../context/PlanetContext';
 
 function FilterByNumber() {
-  const { handleFilterNumeric, numericFilter } = useContext(PlanetContext);
-
+  const { handleFilterNumeric, numericFilter, handleOption,
+    options, filters } = useContext(
+    PlanetContext,
+  );
+  const { filterByNumericValues } = filters;
+  const { column } = filterByNumericValues[0];
   return (
     <div>
       <label htmlFor="column-filter">
@@ -12,11 +16,11 @@ function FilterByNumber() {
           data-testid="column-filter"
           onChange={ handleFilterNumeric }
         >
-          <option>population</option>
-          <option>orbital_period</option>
-          <option>diameter</option>
-          <option>rotation_period</option>
-          <option>surface_water</option>
+          {options.map((option) => (
+            <option key={ option }>
+              {option}
+            </option>
+          ))}
 
         </select>
       </label>
@@ -43,7 +47,7 @@ function FilterByNumber() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ () => numericFilter() }
+        onClick={ () => { numericFilter(); handleOption(column); } }
       >
         Filtrar
       </button>

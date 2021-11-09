@@ -7,6 +7,9 @@ function PlanetProvider({ children }) {
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [options, setOptions] = useState(
+    ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
+  );
   const [filters, setFilters] = useState(
     {
       filterByName: {
@@ -34,7 +37,7 @@ function PlanetProvider({ children }) {
         .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
       setDataFiltered(nameFiltered);
     } else {
-      const respostaApi = await fetchPlanetsApi();
+      const respostaApi = await fetchPlanetsApi(); /* Com ajuda do Wiliamns Tadeu */
       setDataFiltered(respostaApi);
     }
   }
@@ -50,12 +53,12 @@ function PlanetProvider({ children }) {
   };
 
   const handleFilterNumeric = (event) => {
+    console.log(event.target.value);
     const { name, value } = event.target;
     setFilters(
-      { filterByNumericValues: [{ ...filters.filterByNumericValues[0], [name]: value }] },
+      { filterByNumericValues: [{ ...filters.filterByNumericValues[0], [name]: value }] }, /* Com ajuda do Wiliamns Tadeu */
     );
   };
-
   function numericFilter() {
     const { filterByNumericValues } = filters;
     const { column, comparison, value } = filterByNumericValues[0];
@@ -75,6 +78,10 @@ function PlanetProvider({ children }) {
       );
       setDataFiltered(numericFiltered);
     }
+  }
+
+  function handleOption(option) {
+    setOptions(options.filter((item) => item !== option));
   }
 
   function removeFilterColumn(column) {
@@ -100,6 +107,8 @@ function PlanetProvider({ children }) {
         setDataFiltered,
         numericFilter,
         removeFilterColumn,
+        options,
+        handleOption,
       } }
     >
       {children}
