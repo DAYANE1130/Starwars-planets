@@ -5,6 +5,7 @@ import './App.css';
 import FilterByName from './Components/FilterByName';
 import FilterByNumber from './Components/FilterByNumber';
 import RemoveFilter from './Components/RemoveFilter';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

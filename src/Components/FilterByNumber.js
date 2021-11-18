@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Button } from 'react-bootstrap';
 import PlanetContext from '../context/PlanetContext';
 
 function FilterByNumber() {
@@ -44,13 +45,14 @@ function FilterByNumber() {
           onChange={ handleFilterNumeric }
         />
       </label>
-      <button
+      <Button
         type="button"
         data-testid="button-filter"
         onClick={ () => { numericFilter(); handleOption(column); } }
+        variant="outline-secondary"
       >
         Filtrar
-      </button>
+      </Button>
     </div>
   );
 }

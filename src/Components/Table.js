@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Table as Tablestrap } from 'react-bootstrap';
 import PlanetContext from '../context/PlanetContext';
 
 function Table() {
@@ -7,7 +8,8 @@ function Table() {
   if (isLoading === true) return <p>CARREGANDO...</p>;
   return (
     <section>
-      <table>
+      <Tablestrap striped bordered hover>
+        {/* <table> */}
         <thead>
           <tr>
             {Object.keys(data[0]).map((header) => (
@@ -62,7 +64,8 @@ function Table() {
             </tr>
           ))}
         </tbody>
-      </table>
+        {/* </table> */}
+      </Tablestrap>
     </section>
 
   );
